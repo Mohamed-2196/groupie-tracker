@@ -255,8 +255,8 @@
 
             <!-- Apply Filter Button -->
             <div class="button-container">
-                <button id="applyFilterBtn" class="button">Apply Filter</button>
-            </div>
+                <button id="applyFilterBtn" class="button" style="margin-left: 10px; background-color: blueviolet; color: white; font-size: 16px; padding: 10px 20px; border: none; border-radius: 5px;">Apply Filter</button>              
+                  <button id="resetFilterBtn" class="button" style="margin-left: 10px; background-color: red; color: white; font-size: 16px; padding: 10px 20px; border: none; border-radius: 5px;">Reset Filter</button>            </div>
         </div>
     </div>
     
@@ -519,6 +519,39 @@ firstAlbumStart <= year && year <= firstAlbumEnd)
         memberCheckboxes.forEach(checkbox => {
             checkbox.checked = selectAllCheckbox.checked;
         });
+    });
+    const creationDateStart = document.getElementById('creation-date-start');
+    const creationDateEnd = document.getElementById('creation-date-end');
+    const firstAlbumStart = document.getElementById('first-album-start');
+    const firstAlbumEnd = document.getElementById('first-album-end');
+    const locationFilter = document.getElementById('location-filter');
+    const resetFilterBtn = document.getElementById('resetFilterBtn');
+    selectAllCheckbox.addEventListener('change', function() {
+        memberCheckboxes.forEach(checkbox => {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+    });
+
+    // Reset Filter functionality
+    resetFilterBtn.addEventListener('click', function() {
+        // Reset range sliders
+        creationDateStart.value = 1950;
+        creationDateEnd.value = 2024;
+        firstAlbumStart.value = 1950;
+        firstAlbumEnd.value = 2024;
+
+        // Reset location filter
+        locationFilter.value = '';
+
+        // Reset checkboxes
+        selectAllCheckbox.checked = true;
+        memberCheckboxes.forEach(checkbox => {
+            checkbox.checked = true;
+        });
+
+        // Update display for ranges
+        document.getElementById('creation-date-display').innerText = 'From 1950 to 2024';
+        document.getElementById('first-album-display').innerText = 'From 1950 to 2024';
     });
 
     // Initialize display values
